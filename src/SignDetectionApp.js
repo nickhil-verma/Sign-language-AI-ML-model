@@ -9,18 +9,18 @@ const SignDetectionApp = () => {
   const [model, setModel] = useState(null);
   const [maxPredictions, setMaxPredictions] = useState(0);
 
-  // Initialize the model and webcam on component mount
+   
   useEffect(() => {
     const init = async () => {
       const modelURL = URL + "model.json";
       const metadataURL = URL + "metadata.json";
 
-      // Load the model and metadata
+     
       const loadedModel = await tmImage.load(modelURL, metadataURL);
       setModel(loadedModel);
       setMaxPredictions(loadedModel.getTotalClasses());
 
-      // Setup the webcam
+     
       const flip = true;
       const webcam = new tmImage.Webcam(200, 200, flip);
       await webcam.setup();
@@ -29,7 +29,7 @@ const SignDetectionApp = () => {
 
       window.requestAnimationFrame(loop);
 
-      // Append webcam canvas to the DOM
+       
       document.getElementById("webcam-container").appendChild(webcam.canvas);
     };
 
@@ -37,7 +37,7 @@ const SignDetectionApp = () => {
   }, []);
 
   const loop = async () => {
-    webcamRef.current.update(); // Update the webcam frame
+    webcamRef.current.update();  
     await predict();
     window.requestAnimationFrame(loop);
   };
