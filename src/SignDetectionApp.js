@@ -10,7 +10,7 @@ const SignDetectionApp = () => {
   const [maxPredictions, setMaxPredictions] = useState(0);
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [isDetecting, setIsDetecting] = useState(false);
-  const [storedSigns, setStoredSigns] = useState([]);
+  const [arrText, setArrText] = useState([]);
 
   useEffect(() => {
     const initModel = async () => {
@@ -76,22 +76,27 @@ const SignDetectionApp = () => {
       );
       setPredictions(newPredictions);
 
-      // Check if any prediction exceeds 0.99 probability and store it if it's not a duplicate
+      // Check if any prediction exceeds 0.50 probability and store it in arrText if not a duplicate
       const highConfidencePredictions = prediction
         .filter((p) => p.probability >= 0.99)
         .map((p) => p.className);
 
-      if (
-        highConfidencePredictions.length > 0 &&
-        (storedSigns.length === 0 || storedSigns[storedSigns.length - 1] !== highConfidencePredictions[0])
-      ) {
-        setStoredSigns([...storedSigns, highConfidencePredictions[0]]);
+      if (highConfidencePredictions.length > 0) {
+        const latestSign = highConfidencePredictions[0];
+        setArrText((prevArrText) => {
+          const lastStoredSign = prevArrText[prevArrText.length - 1];
+          if (lastStoredSign !== latestSign) {
+            return [...prevArrText, latestSign];
+          } else {
+            return prevArrText;
+          }
+        });
       }
     }
   };
 
   const speakAloud = () => {
-    const utterance = new SpeechSynthesisUtterance(storedSigns.join(" "));
+    const utterance = new SpeechSynthesisUtterance(arrText.join(" "));
     window.speechSynthesis.speak(utterance);
   };
 
@@ -113,10 +118,10 @@ const SignDetectionApp = () => {
       <div>
         <h3>Detected Signs:</h3>
         <p>{predictions.join(', ')}</p>
-        {storedSigns.length > 0 && (
+        {arrText.length > 0 && (
           <button onClick={speakAloud}>Speak Aloud</button>
         )}
-        <p>{storedSigns.join(' ')}</p>
+        <p>{arrText.join(' ')}</p>
       </div>
     </div>
   );
