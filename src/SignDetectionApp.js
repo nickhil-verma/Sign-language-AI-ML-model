@@ -86,7 +86,9 @@ const SignDetectionApp = () => {
         setArrText((prevArrText) => {
           const lastStoredSign = prevArrText[prevArrText.length - 1];
           if (lastStoredSign !== latestSign) {
-            return [...prevArrText, latestSign];
+            const updatedArrText = [...prevArrText, latestSign];
+            speakAloud(updatedArrText.join(" ")); // Speak as soon as the text is updated
+            return updatedArrText;
           } else {
             return prevArrText;
           }
@@ -95,14 +97,14 @@ const SignDetectionApp = () => {
     }
   };
 
-  const speakAloud = () => {
-    const utterance = new SpeechSynthesisUtterance(arrText.join(" "));
+  const speakAloud = (text) => {
+    const utterance = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(utterance);
   };
 
   return (
     <div>
-      <h1>Teachable Machine Image Model</h1>
+      <h1>Indian Sign language to text and speech Image Model</h1>
       {!isCameraOn && (
         <button onClick={startCamera}>Start Camera</button>
       )}
@@ -118,9 +120,6 @@ const SignDetectionApp = () => {
       <div>
         <h3>Detected Signs:</h3>
         <p>{predictions.join(', ')}</p>
-        {arrText.length > 0 && (
-          <button onClick={speakAloud}>Speak Aloud</button>
-        )}
         <p>{arrText.join(' ')}</p>
       </div>
     </div>

@@ -1865,6 +1865,20 @@
     autobind-decorator "^2.4.0"
     seedrandom "^2.4.3"
 
+"@teachablemachine/pose@^0.8.6":
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/@teachablemachine/pose/-/pose-0.8.6.tgz#d37baa9d65a9b0577296e4c1f0d3cf0de17dcaf0"
+  integrity sha512-72UHof2okPdyKlDMSnFcDk/h7dj4I9BBbGsJs64P+B/WQb1rwFcxAeeUFud5rJ2HFwElLDLEjnyaHZljeWV2Bg==
+  dependencies:
+    "@tensorflow-models/posenet" "^2.2.0"
+    autobind-decorator "^2.4.0"
+    seedrandom "^3.0.1"
+
+"@tensorflow-models/posenet@^2.2.0":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@tensorflow-models/posenet/-/posenet-2.2.2.tgz#2abcfa33b43892135d232c9c4408a38cc8f74ba6"
+  integrity sha512-0SXIksRet/IdX7WVH+JSD6W3upkGHix1hwtd3xykIoIMGR7zQ4SC5+wZcNt9ofASyxNYQoI+tUULUo4LNw0c3w==
+
 "@tensorflow/tfjs-backend-cpu@4.20.0":
   version "4.20.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-cpu/-/tfjs-backend-cpu-4.20.0.tgz#7cc7a31fd91950a0d4d1e922c8e9a8f7e7a3e2cc"
@@ -8500,7 +8514,7 @@ seedrandom@^2.4.3:
   resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.4.tgz#b25ea98632c73e45f58b77cfaa931678df01f9ba"
   integrity sha512-9A+PDmgm+2du77B5i0Ip2cxOqqHjgNxnBgglxLcX78A2D6c2rTo61z4jnVABpF4cKeDMDG+cmXXvdnqse2VqMA==
 
-seedrandom@^3.0.5:
+seedrandom@^3.0.1, seedrandom@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-3.0.5.tgz#54edc85c95222525b0c7a6f6b3543d8e0b3aa0a7"
   integrity sha512-8OwmbklUNzwezjGInmZ+2clQmExQPvomqjL7LFqOYqtmuxRgQYqOD3mHaU+MvZn5FLUeVxVfQjwLZW/n/JFuqg==
